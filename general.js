@@ -1,31 +1,43 @@
 const axios = require('axios');
 
-// Get all books
 async function getAllBooks() {
-  const res = await axios.get("http://localhost:3000/books");
-  console.log("All Books:", res.data);
+  try {
+    const res = await axios.get("http://localhost:3000/books");
+    console.log(res.data);
+  } catch (error) {
+    console.error("Error fetching all books:", error.message);
+  }
 }
 
-// Get by ISBN
-async function getByISBN() {
-  const res = await axios.get("http://localhost:3000/books/1");
-  console.log("By ISBN:", res.data);
+async function getByISBN(isbn) {
+  try {
+    const res = await axios.get(`http://localhost:3000/books/${isbn}`);
+    console.log(res.data);
+  } catch (error) {
+    console.error("Error fetching by ISBN:", error.message);
+  }
 }
 
-// Get by Author
-async function getByAuthor() {
-  const res = await axios.get("http://localhost:3000/books/author/Author A");
-  console.log("By Author:", res.data);
+async function getByAuthor(author) {
+  try {
+    const res = await axios.get(`http://localhost:3000/books/author/${author}`);
+    console.log(res.data);
+  } catch (error) {
+    console.error("Error fetching by author:", error.message);
+  }
 }
 
-// Get by Title
-async function getByTitle() {
-  const res = await axios.get("http://localhost:3000/books/title/Book One");
-  console.log("By Title:", res.data);
+async function getByTitle(title) {
+  try {
+    const res = await axios.get(`http://localhost:3000/books/title/${title}`);
+    console.log(res.data);
+  } catch (error) {
+    console.error("Error fetching by title:", error.message);
+  }
 }
 
-// Run all
+// Call functions
 getAllBooks();
-getByISBN();
-getByAuthor();
-getByTitle();
+getByISBN(1);
+getByAuthor("Author A");
+getByTitle("Book One");
